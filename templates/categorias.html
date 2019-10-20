@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Flask</title>
+    <!-- BOOTSTRAP 4 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous">
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
+
+</head>
+
+<body>
+
+  {% include 'nav.html' %}
+
+  <main class="p-3 text-white">
+    <h2>Categorias</h2>
+    <div class="row">
+      <div class="col-md-5">
+        <div class="card p-2">
+          <form class="/crear-categoria" method="post">
+            <div class="form-group">
+                <input type="text" name="nombre" placeholder="Nombre de la categoria"
+                class="form-control" autofocus>
+            </div>
+            <button type="submit" class="btn btn-primary float-right">Registrar</button>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="card p-2">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for c in categorias %}
+              <tr>
+                <td>{{c.nombre}}</td>
+                <td>
+                  <a href="{{url_for('eliminarCategoria', id=c.id)}}" class="btn btn-danger">Eliminar</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</body>
+
+</html>
